@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   name: "client",
@@ -83,8 +83,9 @@ module.exports = {
   ],
   devtool: 'inline-source-map',
   optimization: {
+    minimize: true,
     minimizer: [
-      new UglifyJsWebpackPlugin()
+      new TerserPlugin()
     ],
     splitChunks: {
       chunks: 'all',
