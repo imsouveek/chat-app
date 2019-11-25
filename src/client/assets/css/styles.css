@@ -11,12 +11,12 @@ body {
   min-height: 100vh;
 }
 
-#main-content, footer {
+header, main, footer {
   background-color: white;
   padding: 0 16px;
 }
 
-#main-content {
+main {
   flex-grow: 1;
 }
 
@@ -24,48 +24,22 @@ h1 {
   color: blue;
   font-size: 48px;
   margin-bottom: 8px;
+  margin-top: 0;
+}
+
+header {
+  border-bottom: 1px solid #ccc;
 }
 
 footer {
   color: #888888;
+  border-top: 1px solid #ccc;
 }
 
-nav {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #888888;
-}
-
-nav a {
-  color: #666666;
-  text-decoration: none;
-  margin-right: 16px;
-}
-
-.me {
-  width: 250px;
-}
-
-#error {
-  color: red;
-
-}
-
-input {
-  color: 1px solid #ccc;
-  padding: 8px;
-  font-size: 16px;
-}
-
-button {
-  cursor: pointer;
-  border: 2px solid #888888;
-  background: #888888;
-  color: white;
-  padding: 8px;
-  font-size: 16px;
-}
-
-#spacing {
-  padding: 5px;
+img.chat {
+  width: 200px;
+  margin: 0;
+  padding: 0; 
+  display: block;
+  margin: 0 auto;
 }

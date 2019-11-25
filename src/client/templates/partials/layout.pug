@@ -1,18 +1,22 @@
-html
+html(lang="en")
   head
-    block head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    block title
       title Chat Application
 
   body
-    div#main-content
-      header
-        block title
-          h1 This is a placeholder title
+    header
+      block heading
+        h1 Title
 
+    main
       block content
-        p Need to fill out content for page
+        p 
+          | This is a sample content area.
+          | This is another sample of content area.
 
     footer
       block footer
-        hr
         p Created by Souveek Kumar Bose

@@ -4,90 +4,97 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  name: 'client',
+  name: "client",
   entry: {
     index: [
-      path.resolve(__dirname, '../../src/client/assets/js/index.js')
+      path.resolve(__dirname, '../../src/client/assets/js/main.js'),
     ]
   },
-  mode: 'production',
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, '../../dist'),
     publicPath: '/',
-    filename: '[name].bundle.js'
+    filename: '[name]-bundle.js'
   },
   module: {
     rules: [{
       test: /\.js[x]?$/,
-      use: ['babel-loader'],
-      exclude: /node_modules/
+      use: [
+        'babel-loader'
+      ],
+      exclude: /node_module/
     }, {
       test: /\.pug$/,
-      use:[
-        'html-loader',
+      use: [
+        {
+          loader: 'html-loader',
+          options: {
+            attrs: [
+              'img:src',
+              'link:href'
+            ]
+          }
+        },
         'pug-plain-loader'
       ]
     }, {
       test: /\.css$/,
       use: [
-        MiniCssExtractPlugin.loader,
-        "css-loader"
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: true,
+            reloadAll: true
+          }
+        },
+        'css-loader'
       ]
     }, {
-      test: /\.(jpg|png)$/,
-      use:[{
-        loader: "file-loader",
+      test: /\.(jpg|png|gif)$/,
+      use: [{
+        loader: 'file-loader',
         options: {
-          name: "[name].[ext]",
-          outputPath: "images"
+          outputPath: 'images',
+          name: '[name].[ext]'
         }
       }]
-    }
-  ]
+    }]
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css'
-    }),
+    new MiniCssExtractPlugin(),
     new OptimizeCssAssetsWebpackPlugin(),
-    new CompressionWebpackPlugin({
-      algorithm: 'gzip',
-      filename: '[path].gz[query]'
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../../src/client/templates/views/index.pug'),
+      filename: 'index.html',
+      chunks: ['index', 'vendor'],
     }),
     new CompressionWebpackPlugin({
       algorithm: 'brotliCompress',
       filename: '[path].br[query]'
     }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, '../../src/client/templates/views/index.pug'),
-      chunks: ['index']
-    })
+    new CompressionWebpackPlugin({
+      algorithm: 'gzip',
+      filename: '[path].gz[query]'
+    }),
   ],
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   optimization: {
-    /* Apply uglifyJs minimizer */
-    // minimizer: [
-    //   new UglifyJsPlugin()
-    // ],
-    /*
-      Optimization with splitChunksPlugin
-    */
+    minimizer: [
+      new UglifyJsWebpackPlugin()
+    ],
     splitChunks: {
       chunks: 'all',
-      minChunks: 2,
       cacheGroups: {
         vendors: {
-          name: "vendor",
-          chunks: "initial",
-          minChunks: 2,
-
+          name: 'vendor',
+          // minChunks: 2,
+          chunks: 'all'
         }
       }
     }
-  },
+  }
 }
