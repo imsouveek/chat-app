@@ -1,5 +1,14 @@
 extends ../partials/layout.pug
 
-block heading
-  img.chat(src='../../assets/img/chat.png')
-  h1 Chat Application
+block footer
+  form#chatForm
+    input#chatText(
+      type='text'
+      autocomplete='off'
+      placeholder='Chat'
+      name='chatText'
+    )
+    input(
+      type='submit'
+      value='Send'
+    )

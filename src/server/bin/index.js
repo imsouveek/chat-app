@@ -13,17 +13,14 @@ import { createServer } from 'http';
 // Load Application entry point
 import app from '../app';
 
-// Load Websocket support
-import socketio from 'socket.io';
+// Import chatsocket class
+import chatSocket from '../chatSocket';
 
 // Create Server and enable Websocket
 const server = createServer(app);
-const io = socketio(server);
 
-// Handle Websocket events
-io.on('connection', () => {
-  console.log('New connection');
-})
+// Enable chatSocket
+const chatSocketInstance = new chatSocket(server);
 
 // Identify port and start Server
 const port = process.env.PORT;

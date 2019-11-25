@@ -11,9 +11,13 @@ body {
   min-height: 100vh;
 }
 
-header, main, footer {
+header, main {
   background-color: white;
   padding: 0 16px;
+}
+
+footer {
+  background-color: #cccccc;
 }
 
 main {
@@ -23,7 +27,7 @@ main {
 h1 {
   color: blue;
   font-size: 48px;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   margin-top: 0;
 }
 
@@ -37,9 +41,26 @@ footer {
 }
 
 img.chat {
-  width: 200px;
+  width: 100px;
   margin: 0;
-  padding: 0;
+  padding: 20px 0px 0px 0px;
   display: block;
   margin: 0 auto;
 }
+
+input {
+  padding: 5px 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  color: #666666;
+  border: 1px solid #cccccc;
+}
+
+footer input[type=submit] {
+  float: right;
+  width: 10%;
+}
+
+input {
+  width: 86%;
+};
