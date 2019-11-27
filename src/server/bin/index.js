@@ -20,7 +20,7 @@ import chatSocket from '../chatSocket';
 const server = createServer(app);
 
 // Enable chatSocket
-const chatSocketInstance = new chatSocket(server);
+new chatSocket(server);
 
 // Identify port and start Server
 const port = process.env.PORT;

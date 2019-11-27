@@ -1,3 +1,4 @@
+//- Basic layout to be applied to all pages
 html(lang="en")
   head
     meta(charset="UTF-8")
@@ -7,18 +8,21 @@ html(lang="en")
       title Chat Application
 
   body
+    //- Header section basically has icon, title and created by
     header
       block heading
         img.chat(src='../../assets/img/chat.png')
         h1 Chat Application
         p Created by Souveek Kumar Bose
 
+    //- Main section which should show the chats
     main
       block content
         p
           | This is a sample content area.
           | This is another sample of content area.
 
+    //- Footer section
     footer
       block footer
 
