@@ -20,6 +20,11 @@ export default class chatSocket {
         io.emit('newChat', value);
       });
 
+      // Broadcast "newLocation" event when any client socket triggers "sendLocation"
+      socket.on('sendLocation', (position) => {
+        io.emit('newLocation', `https://google.com/maps?q=${position.latitude},${position.longitude}`);
+      });
+
       // When a user disconnects, broadcast information to other users
       socket.on('disconnect', () => {
         io.emit('message', 'A user has left')
