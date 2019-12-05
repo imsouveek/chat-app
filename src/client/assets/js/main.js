@@ -23,11 +23,28 @@ socket.on('message', (messageStr) => {
 
 // Handler for "newChat" event on socket
 socket.on('newChat', (msg) => {
+
+  // Show message on chat window
+  const contentBlock = document.querySelector("#content");
+  contentBlock.insertAdjacentHTML(
+    'beforeend',
+    `<p class="chatMsg">${msg}</p>`
+  );
+
+  // Log message to console
   console.log(`New chat ${msg}`);
 });
 
 // Handler for "newLocation" event
 socket.on('newLocation', (msg) => {
+  // Show message on chat window
+  const contentBlock = document.querySelector("#content");
+  contentBlock.insertAdjacentHTML(
+    'beforeend',
+    `<a href="${msg}" target="_blank">New Location URL</a>`
+  );
+
+  // Log message to console
   console.log(`New shared location: ${msg}`);
 });
 
@@ -39,4 +56,4 @@ document
 // Use helper class to handle button "click" event
 document
   .querySelector('#shareLocation')
-  .addEventListener('click', () => FormHandler.shareLocation(socket));
+  .addEventListener('click', (event) => FormHandler.shareLocation(event, socket));

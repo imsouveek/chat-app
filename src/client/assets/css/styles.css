@@ -93,3 +93,8 @@ footer button {
   color: white;
   background-color: #22aa33;
 }
+
+footer button[disabled=disabled] {
+  color: #777;
+  background-color: lightgreen;
+}

@@ -16,13 +16,15 @@ export default class chatSocket {
       socket.broadcast.emit('message', 'A new user has joined');
 
       // Broadcast "newChat" event when any client socket triggers "sendChat"
-      socket.on('sendChat', (value) => {
+      socket.on('sendChat', (value, callback) => {
         io.emit('newChat', value);
+        callback();
       });
 
       // Broadcast "newLocation" event when any client socket triggers "sendLocation"
-      socket.on('sendLocation', (position) => {
+      socket.on('sendLocation', (position, callback) => {
         io.emit('newLocation', `https://google.com/maps?q=${position.latitude},${position.longitude}`);
+        callback();
       });
 
       // When a user disconnects, broadcast information to other users
