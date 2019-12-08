@@ -7,23 +7,23 @@ html(lang="en")
     block title
       title Chat Application
 
+    link(href="https://fonts.googleapis.com/css?family=BioRhyme:200,300,700,800&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    link(rel='icon' href='../../assets/img/chat.png')
   body
     //- Header section basically has icon, title and created by
-    header
-      block heading
-        img.chat(src='../../assets/img/chat.png')
-        div.heading-text
-          h1 Chat Application
-          p Created by Souveek Kumar Bose
+    include ./header.pug
+
+    //- Sidebar
+    include ./sidebar.pug
 
     //- Main section which should show the chats
-    main
+    main.main
       block content
         p
           | This is a sample content area.
           | This is another sample of content area.
 
     //- Footer section
-    footer
-      block footer
+    include ./footer.pug
 

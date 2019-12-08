@@ -1,0 +1,9 @@
+.sidebar {
+  height: 100%;
+  width: $sidebar-width;
+  background-color: darken($color-primary, 20%);
+  position: fixed;
+  left: 0;
+  top: $header-height;
+  margin-right: 1rem;
+}

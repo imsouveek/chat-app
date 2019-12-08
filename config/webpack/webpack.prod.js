@@ -80,10 +80,12 @@ module.exports = {
         be passed to optimize-css-assets-webpack-plugin to minify and optimize
         the css
       */
-      test: /\.css$/,
+      test: /\.scss$/,
       use: [
         MiniCssExtractPlugin.loader,
-        'css-loader'
+        'css-loader',
+        'postcss-loader',
+        'sass-loader'
       ]
     }, {
 
@@ -140,6 +142,13 @@ module.exports = {
       algorithm: 'gzip',
       filename: '[path].gz[query]'
     }),
+
+    /*
+      Load only en-us locale for moment to limit build sizes. This can also
+      be done using moment-locales-webpack-plugin, but there is no difference
+      in size of build by using the two methods
+    */
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en-us/)
   ],
 
   // Source maps controlled through plugin

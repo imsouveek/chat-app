@@ -5,25 +5,34 @@ extends ../partials/layout.pug
 
 //- Content block
 block content
-  #content
+  .chat-ui
 
-//- Overriding only the footer for now to include the chat form
-block footer
-  form#chatForm
+    //- Messages for display
+    .chat-received
 
-    //- Box for entering chat message
-    input#chatText(
-      type='text'
-      autocomplete='off'
-      placeholder='Chat'
-      name='chatText'
-    )
+    //- Overriding only the footer for now to include the chat form
+    form.chat-form
 
-    //- Button for sending message
-    input(
-      type='submit'
-      value='Send'
-    )
+      //- Box for entering chat message
+      input#chatText.text-input(
+        type='text'
+        autocomplete='off'
+        placeholder='Chat'
+        name='chatText'
+      )
 
-  //- Button for sharing location
-  button#shareLocation Share Location
+      //- Button for sending message
+      button#chatSend.btn
+        i.material-icons send
+
+      //- Button for sharing location
+      button#chatLocation.btn
+        i.material-icons my_location
+
+block append footer
+  //- Scripts to hold template layouts
+  script#message-template(type="text/html")
+    include ../partials/message.pug
+
+  script#location-template(type="text/html")
+    include ../partials/locationMsg.pug

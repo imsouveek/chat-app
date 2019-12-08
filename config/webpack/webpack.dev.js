@@ -83,7 +83,7 @@ module.exports = {
         files. While that is strictly not required for development, we can use
         mini-css-extract-plugin because its loader already supports hot reloading
       */
-      test: /\.css$/,
+      test: /\.scss$/,
       use: [
         {
           loader: MiniCssExtractPlugin.loader,
@@ -92,7 +92,9 @@ module.exports = {
             reloadAll: true
           }
         },
-        'css-loader'
+        'css-loader',
+        'postcss-loader',
+        'sass-loader'
       ]
     }, {
 

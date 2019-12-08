@@ -1,0 +1,24 @@
+.chat-ui {
+
+  .chat-received {
+    padding: 1rem;
+    overflow: scroll;
+  }
+}
+
+.chat-form {
+  position: fixed;
+  bottom: 0;
+  height: 6rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: lighten($color-grey, 50%);
+
+  * {
+    float: left;
+  }
+
+  .text-input {
+    width: calc(100% - 41rem);
+  }
+}

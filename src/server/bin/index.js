@@ -14,7 +14,7 @@ import { createServer } from 'http';
 import app from '../app';
 
 // Import chatsocket class
-import chatSocket from '../chatSocket';
+import chatSocket from '../utils/chatSocket';
 
 // Create Server and enable Websocket
 const server = createServer(app);

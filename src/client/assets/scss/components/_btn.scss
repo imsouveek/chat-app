@@ -1,0 +1,42 @@
+
+.btn {
+
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  padding: 1rem 1rem;
+  background-color: $color-primary;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  vertical-align: middle;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover:not([disabled=disabled]) {
+    background-color: lighten($color-primary, 5%);
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 1rem rgba($color-black, 0.3);
+  }
+
+  &:active:not([disabled=disabled]) {
+    box-shadow: 0 0.3rem 0.3rem rgba($color-black, 0.3);
+    transform: translateY(-0.1rem);
+  }
+
+  &[disabled=disabled] {
+    background-color: lighten($color-primary, 50%);
+
+    * {
+      color: $color-grey;
+    }
+  }
+
+  i {
+    font-size: 2rem;
+    vertical-align: middle;
+    color: $color-white;
+  }
+}
