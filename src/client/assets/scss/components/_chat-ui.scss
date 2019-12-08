@@ -2,11 +2,12 @@
 
   .chat-received {
     padding: 1rem;
-    overflow: scroll;
   }
 }
 
 .chat-form {
+
+  /* Chat form goes at the bottom */
   position: fixed;
   bottom: 0;
   height: 6rem;
@@ -14,8 +15,11 @@
   padding: 1rem;
   background-color: lighten($color-grey, 50%);
 
-  * {
+  /* Contents are side by side */
+  .btn,
+  .text-input {
     float: left;
+    margin: 0 1rem 0 0 ;
   }
 
   .text-input {

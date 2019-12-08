@@ -1,16 +1,25 @@
+/*
+  Global resets:-
+  * Set margin and padding to 0
+  * Define box sizing as inherit for all selector so that all elements
+    inherit from body
+  * Set box sizing to include content, padding and border
+  * Set global reference setting for all font sizes and spacing. This
+    is done by setting font-size in html and then defining all font
+    sizes and spacings in 'rem' unit
+*/
 *,
 *::before,
 *::after {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: inherit;
 }
 
 html {
-  font-size: 62.5%
+  font-size: 62.5%;
 }
 
 body {
   box-sizing: border-box;
 }
-

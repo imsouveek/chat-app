@@ -9,4 +9,17 @@ block sidebar
 
 block content
   main.join-main
-    p Hello
+
+    form.join-form(action="/chat.html")
+      h2.heading-secondary.u-margin-bottom-medium Join Page
+
+      p.u-margin-bottom-small
+        label(for="username").label User Name
+        input(type="text" name="username" placeholder="User Name" required).text-input
+
+      p.u-margin-bottom-small
+        label(for="room").label Room
+        input(type="text" name="room" placeholder="Room" required).text-input
+
+      p
+        button.btn Join

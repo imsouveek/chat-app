@@ -1,16 +1,19 @@
 
 .btn {
 
+  font-family: inherit;
   font-size: 1.5rem;
   text-decoration: none;
-  margin: 0 0.5rem;
+  text-transform: uppercase;
   padding: 1rem 1rem;
+  color: $color-white;
   background-color: $color-primary;
   border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s;
   vertical-align: middle;
 
+  /* Remove blue glow outline on focus */
   &:focus {
     outline: none;
   }
@@ -34,9 +37,13 @@
     }
   }
 
-  i {
+  * {
     font-size: 2rem;
     vertical-align: middle;
     color: $color-white;
+  }
+
+  i {
+    padding-bottom: 0.2rem;
   }
 }
