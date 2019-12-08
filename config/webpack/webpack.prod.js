@@ -19,10 +19,13 @@ module.exports = {
   // "name" is required if we want to compile multiple files
   name: "client",
 
-  // Start point for the application
+  // Start points for the application
   entry: {
     index: [
-      path.resolve(__dirname, '../../src/client/assets/js/main.js'),
+      path.resolve(__dirname, '../../src/client/assets/js/index.js'),
+    ],
+    chat: [
+      path.resolve(__dirname, '../../src/client/assets/js/chat.js'),
     ]
   },
 
@@ -127,8 +130,15 @@ module.exports = {
 
     // Provide template for index.html
     new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../../src/client/templates/views/chat.pug'),
+      filename: 'chat.html',
+      excludeChunks: ['index'],
+    }),
+
+    new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../../src/client/templates/views/index.pug'),
       filename: 'index.html',
+      excludeChunks: ['chat'],
     }),
 
     // Create a compressed file using brotli compression algorithm

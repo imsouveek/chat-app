@@ -1,8 +1,8 @@
+@import 'abstracts/variables';
+
 @import 'base/base';
 @import 'base/typography';
 @import 'base/animation';
-
-@import 'abstracts/variables';
 
 @import 'components/chat-ui';
 @import 'components/btn';
@@ -12,4 +12,4 @@
 @import 'layout/main';
 @import 'layout/sidebar';
 
-@import 'pages/home';
+@import 'pages/join';

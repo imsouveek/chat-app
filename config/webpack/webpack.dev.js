@@ -18,15 +18,19 @@ module.exports = {
   name: "client",
 
   /*
-    Start point for the application. Note that dev config should include
-    hot reload script. Also, main.js includes css and template which ensures
+    Start points for the application. Note that dev config should include
+    hot reload script. Also, .js includes css and template which ensures
     hot reloading of css and templates - wihout that, we have to manually
     include each css and template in these settings
   */
   entry: {
     index: [
       'webpack-hot-middleware/client?reload=true',
-      path.resolve(__dirname, '../../src/client/assets/js/main.js'),
+      path.resolve(__dirname, '../../src/client/assets/js/index.js'),
+    ],
+    chat: [
+      'webpack-hot-middleware/client?reload=true',
+      path.resolve(__dirname, '../../src/client/assets/js/chat.js'),
     ]
   },
 
@@ -126,11 +130,20 @@ module.exports = {
     // Extract css into separate files
     new MiniCssExtractPlugin(),
 
+    // Provide template for chat.html
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../../src/client/templates/views/chat.pug'),
+      filename: 'chat.html',
+      excludeChunks: ['index'],
+    }),
+
     // Provide template for index.html
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../../src/client/templates/views/index.pug'),
       filename: 'index.html',
+      excludeChunks: ['chat'],
     }),
+
   ],
 
   // Source maps controlled through plugin

@@ -1,6 +1,7 @@
 body {
   font-family: 'BioRhyme', serif;
   font-weight: 300;
+  color: darken($color-grey, 10%);
 }
 
 .heading-primary{
@@ -16,11 +17,17 @@ body {
 
 .text-input {
   font-size: 1.5rem;
-  font-family: 'BioRhyme', serif;
+  font-family: inherit;
+  color: inherit;
 }
 
 .chat {
   font-size: 1.6rem;
+
+  &__message,
+  &__url {
+    padding-left: 2rem;
+  }
 
   &__meta {
     font-weight: 700;
@@ -33,5 +40,6 @@ body {
       font-weight: 200;
       font-size: 1rem;
     }
+
   }
 }

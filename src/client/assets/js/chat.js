@@ -4,7 +4,7 @@
   hot-reloading of css / pug files in webpack dev server
 */
 require('../scss/index.scss');
-require('../../templates/views/index.pug');
+require('../../templates/views/chat.pug');
 
 /*
   The core javascript. This enables the websocket programming that is needed

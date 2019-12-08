@@ -1,0 +1,39 @@
+//- Pug file for chat.html
+
+//- Import layout. This needs to be done for all views
+extends ../partials/layout.pug
+
+//- Content block
+block content
+  main.main
+    .chat-ui
+
+      //- Messages for display
+      .chat-received
+
+      //- Overriding only the footer for now to include the chat form
+      form.chat-form
+
+        //- Box for entering chat message
+        input#chatText.text-input(
+          type='text'
+          autocomplete='off'
+          placeholder='Chat'
+          name='chatText'
+        )
+
+        //- Button for sending message
+        button#chatSend.btn
+          i.material-icons send
+
+        //- Button for sharing location
+        button#chatLocation.btn
+          i.material-icons my_location
+
+block append footer
+  //- Scripts to hold template layouts
+  script#message-template(type="text/html")
+    include ../partials/message.pug
+
+  script#location-template(type="text/html")
+    include ../partials/locationMsg.pug
