@@ -5,7 +5,8 @@
   position: relative;
 
   .join-form {
-    background-color: lighten($color-grey, 50%);;
+    background-color: lighten($color-grey, 50%);
+    border-radius: 1rem;
     position: absolute;
     top: 50%;
     left: 50%;

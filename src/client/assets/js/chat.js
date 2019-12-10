@@ -12,6 +12,12 @@ require('../../templates/views/chat.pug');
 */
 import io from 'socket.io-client';
 import UiHandler from './uiHandler';
+import Qs from 'qs';
+
+// Get query parameters
+const {username, room} = Qs.parse(location.search, {
+  ignoreQueryPrefix: true
+});
 
 // Create a socket
 const socket = io();
@@ -34,3 +40,12 @@ document
 document
   .querySelector('#chatLocation')
   .addEventListener('click', (event) => UiHandler.shareLocation(event, socket));
+
+// Send join event to server on page load
+socket.emit('join', {username, room}, (err) => {
+  if (err) {
+    alert(err);
+    window.location.replace('/');
+
+  }
+})

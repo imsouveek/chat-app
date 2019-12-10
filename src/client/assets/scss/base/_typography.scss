@@ -1,24 +1,24 @@
 /* Setting base font and color for document */
 body {
   font-family: 'BioRhyme', serif;
-  font-weight: 300;
+  font-weight: $font-weight-medium;
   color: darken($color-grey, 10%);
 }
 
 /* Heading styles */
 .heading-primary{
-  font-weight: 700;
+  font-weight: $font-weight-large;
   letter-spacing: 0.5rem;
   animation: moveInRight 1s ease-out;
 }
 
 .heading-content{
-  font-weight: 300;
+  font-weight: $font-weight-medium;
   animation: appear 0.5s ease-out 1s 1 backwards;
 }
 
 .heading-secondary {
-  font-weight: 700;
+  font-weight: $font-weight-large;
   font-size: 2.5rem;
 
   /* Implment a cool gradient color effect */
@@ -48,14 +48,14 @@ body {
   }
 
   &__meta {
-    font-weight: 700;
+    font-weight: $font-weight-large;
 
     &__user {
       padding-right: 1rem;
     }
 
     &__time {
-      font-weight: 200;
+      font-weight: $font-weight-small;
       font-size: 1rem;
     }
 
