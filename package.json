@@ -1,13 +1,12 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
-  "description": "Basic chat application",
+  "description": "Basic browser based chat application",
   "main": "src/server/bin/main.js",
   "scripts": {
     "dev": "cross-env DOTENV_CONFIG_PATH=config/env/dev.env nodemon -r dotenv/config src/server/bin/main.js --watch src/server",
     "prod": "cross-env DOTENV_CONFIG_PATH=config/env/prod.env node -r dotenv/config src/server/bin/main.js",
-    "start": "node src/server/bin/main.js",
-    "build": "webpack --mode production --config config/webpack/webpack.prod.js --verbose --progress --profile --json > stats.json",
+    "test-build": "webpack --mode production --config config/webpack/webpack.prod.js --verbose --progress --profile --json > stats.json",
     "deploy": "git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
