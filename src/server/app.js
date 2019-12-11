@@ -5,6 +5,7 @@ import webpack from 'webpack';
 
 // Create the express server-side app
 const app = express();
+console.log(process.env.NODE_ENV);
 
 // Determine if we are running in production mode
 const isProd = (process.env.NODE_ENV === 'production');
