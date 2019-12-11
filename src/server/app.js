@@ -1,11 +1,8 @@
 import { resolve } from 'path';
 import express from 'express';
-import configDevClient, { devServer } from '../../config/webpack/webpack.dev';
-import webpack from 'webpack';
 
 // Create the express server-side app
 const app = express();
-console.log(process.env.NODE_ENV);
 
 // Determine if we are running in production mode
 const isProd = (process.env.NODE_ENV === 'production');
@@ -20,12 +17,16 @@ if (!isProd) {
 
   // Development server
 
+  // Import extra stuff
+  const webpack = require('webpack');
+  const configDevClient = require('../../config/webpack/webpack.dev');
+
   // Compile development webpack config
   const compiler = webpack([configDevClient]).compilers[0];
 
   // Enable webpack dev middleware
   const WebpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackDevMw = WebpackDevMiddleware(compiler, devServer);
+  const webpackDevMw = WebpackDevMiddleware(compiler, configDevClient.devServer);
   app.use(webpackDevMw);
 
   // Enable webpack hot middleware
