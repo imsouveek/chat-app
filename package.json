@@ -5,8 +5,8 @@
   "main": "src/server/bin/main.js",
   "scripts": {
     "dev": "cross-env DOTENV_CONFIG_PATH=config/env/dev.env nodemon -r dotenv/config src/server/bin/main.js --watch src/server",
-    "prod": "cross-env DOTENV_CONFIG_PATH=config/env/prod.env node -r dotenv/config src/server/bin/main.js",
-    "test-build": "webpack --mode production --config config/webpack/webpack.prod.js --verbose --progress --profile --json > stats.json",
+    "prod": "node src/server/bin/main.js",
+    "build": "webpack --mode production --config config/webpack/webpack.prod.js --verbose --progress --profile --json > stats.json",
     "deploy": "git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,8 +26,7 @@
     "mustache": "^3.1.0",
     "qs": "^6.9.1",
     "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.0",
-    "webpack": "^4.41.2"
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
@@ -55,6 +54,7 @@
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
     "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0"

@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import express from 'express';
 import configDevClient, { devServer } from '../../config/webpack/webpack.dev';
-import configProdClient from '../../config/webpack/webpack.prod';
 import webpack from 'webpack';
 
 // Create the express server-side app
@@ -39,18 +38,14 @@ if (!isProd) {
 
   // Production server
 
-  // Compile production webpack config and start server
-  webpack([configProdClient]).run((err, stats) => {
+  // Use express-static-gzip to serve compressed files
+  const expressStaticGzip = require('express-static-gzip');
 
-    // Use express-static-gzip to serve compressed files
-    const expressStaticGzip = require('express-static-gzip');
-
-    // Serve compressed files, enable brotli compression and prefer brotli
-    app.use(expressStaticGzip(resolve(__dirname, '../../dist'), {
-      enableBrotli: true,
-      orderPreference: ['br']
-    }));
-  });
+  // Serve compressed files, enable brotli compression and prefer brotli
+  app.use(expressStaticGzip(resolve(__dirname, '../../dist'), {
+    enableBrotli: true,
+    orderPreference: ['br']
+  }));
 }
 
 // Export the app
