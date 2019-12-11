@@ -2,6 +2,10 @@
 
   .chat-received {
     padding: 1rem;
+
+    .chat:last-child {
+      margin-bottom: $header-height;
+    }
   }
 }
 

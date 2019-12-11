@@ -6,4 +6,19 @@
   left: 0;
   top: $header-height;
   margin-right: 1rem;
+  padding: 1rem;
+  color: lighten($color-grey, 40%);
+
+  &__content {
+    padding-left: 2rem;
+
+    &__listitem {
+      list-style-type: none;
+
+      &:first-child {
+        color: lighten($color-primary, 40%);
+      }
+    }
+
+  }
 }

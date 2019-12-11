@@ -22,8 +22,8 @@ const {username, room} = Qs.parse(location.search, {
 // Create a socket
 const socket = io();
 
-// Handler for "message" event on socket
-socket.on('message', (msg) => UiHandler.showMessage(msg));
+// Handler for "data" event on socket
+socket.on('data', (msg) => UiHandler.handleUpdatedMeta(username, msg));
 
 // Handler for "newChat" event on socket
 socket.on('newChat', (msg) => UiHandler.showMessage(msg));
@@ -46,6 +46,5 @@ socket.emit('join', {username, room}, (err) => {
   if (err) {
     alert(err);
     window.location.replace('/');
-
   }
 })

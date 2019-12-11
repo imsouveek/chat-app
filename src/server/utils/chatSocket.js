@@ -1,7 +1,7 @@
 // Load Websocket support
 import socketio from 'socket.io';
 import Users from './users';
-import TimeManipulation from './timeManipulation';
+import MsgHandler from './msgHandler';
 
 export default class chatSocket {
   constructor(server) {
@@ -21,7 +21,7 @@ export default class chatSocket {
           room
         });
 
-        // If error, stop
+        // If error, stop and return error message to client
         if (error) {
           return callback(error);
         }
@@ -30,15 +30,26 @@ export default class chatSocket {
         // Send welcome message and inform other users that this user has joined
         socket
           .emit(
-            'message',
-            TimeManipulation.generateMessageObj('Welcome!')
+            'newChat',
+            MsgHandler.generateMessageObj('Server', 'Welcome!')
           );
         socket
           .broadcast
           .to(user.room)
           .emit(
-            'message',
-            TimeManipulation.generateMessageObj(`${user.username} has joined`)
+            'newChat',
+            MsgHandler.generateMessageObj('Server', `${user.username} has joined`)
+          );
+
+        // Send updated meta
+        io
+          .to(user.room)
+          .emit(
+            'data',
+            {
+              room: user.room,
+              users: users.getUsersinRoom(user.room)
+            }
           );
 
         callback();
@@ -57,7 +68,7 @@ export default class chatSocket {
             .to(user.room)
             .emit(
               'newChat',
-              TimeManipulation.generateMessageObj(value)
+              MsgHandler.generateMessageObj(user.username, value)
             );
         }
         callback();
@@ -76,7 +87,8 @@ export default class chatSocket {
             .to(user.room)
             .emit(
               'newLocation',
-              TimeManipulation.generateLocationObj(
+              MsgHandler.generateLocationObj(
+                user.username,
                 `https://google.com/maps?q=${position.latitude},${position.longitude}`
               )
             );
@@ -94,10 +106,21 @@ export default class chatSocket {
           io
             .to(user.room)
             .emit(
-              'message',
-              TimeManipulation.generateMessageObj(`${user.username} has left`
-            )
-          );
+              'newChat',
+              MsgHandler.generateMessageObj('Server', `${user.username} has left`)
+            );
+
+          // Send updated meta
+          io
+          .to(user.room)
+          .emit(
+            'data',
+            {
+              room: user.room,
+              users: users.getUsersinRoom(user.room)
+            }
+          )
+
         }
       });
     });

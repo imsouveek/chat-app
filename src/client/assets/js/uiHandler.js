@@ -66,9 +66,6 @@ export default class UiHandler {
 
   static showMessage(msg) {
 
-    // Log message to console
-    console.log(msg);
-
     // Find tag where new message needs to be displayed
     const contentBlock = document.querySelector(".chat-received");
 
@@ -77,6 +74,7 @@ export default class UiHandler {
 
     // Render html using Mustache
     const html = Mustache.render(template, {
+      username: msg.username,
       message: msg.text,
       createdAt: moment(msg.createdAt).format('hh:mm A')
     });
@@ -84,29 +82,83 @@ export default class UiHandler {
     // Append to contentBlock section
     contentBlock.insertAdjacentHTML('beforeend', html);
 
+    // Autoscroll
+    UiHandler.autoscroll();
+
   }
 
   static showLocation(msg) {
-
-    // Log message to console
-    console.log(msg);
 
     // Find tag where new message needs to be displayed
     const contentBlock = document.querySelector(".chat-received");
 
     // Get template from script tag in html
     const template = document.querySelector(`#location-template`).innerHTML;
-    console.log(template);
-    console.log(msg.url);
 
     // Render html using Mustache
     const html = Mustache.render(template, {
+      username: msg.username,
       url: msg.url,
       createdAt: moment(msg.createdAt).format('hh:mm A')
     });
 
     // Append to contentBlock section
     contentBlock.insertAdjacentHTML('beforeend', html);
+
+    // Autoscroll
+    UiHandler.autoscroll();
+
+  }
+
+  static handleUpdatedMeta(username, {room, users}) {
+
+    // "users" list only has lowercase usernames, so convert username
+    username = username.trim().toLowerCase();
+
+    // Find user in results
+    const idx = users.findIndex(
+      (obj) => obj.username === username
+    );
+
+    // Put current user at top of users list
+    const thisUser = users.splice(idx, 1);
+    users.unshift(thisUser[0]);
+
+    // Render users
+    const template = document.querySelector(`#sidebar-template`).innerHTML;
+    const html = Mustache.render(template, {room, users});
+    const sidebarBlock = document.querySelector('.sidebar');
+    sidebarBlock.innerHTML = html;
+  }
+
+  static autoscroll() {
+
+    // Get last chat message
+    const messages = document.querySelector(".chat-received");
+    const newMessage = messages.lastElementChild;
+
+    // Height measurements
+    const newMarginStyles = getComputedStyle(newMessage);
+    const newMessageHeight = newMessage.offsetHeight;
+
+    // Scrollbar is being created on html element
+    const main = document.querySelector('html');
+
+    // Container height
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    const mainHeight = document.querySelector('.main').offsetHeight;
+    const visibleHeight = headerHeight + mainHeight;
+
+    // Visible height - screen realestate
+    const containerHeight = document.querySelector('.sidebar').offsetHeight;
+
+    // How far have I scrolled
+    const scrollOffset = main.scrollTop + containerHeight;
+
+    // If I have scrolled away from bottom, don't autoscroll
+    if (visibleHeight - newMessageHeight <= scrollOffset) {
+      newMessage.scrollIntoView();
+    }
 
   }
 }

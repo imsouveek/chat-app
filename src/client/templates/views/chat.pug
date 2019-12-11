@@ -20,6 +20,7 @@ block content
           autocomplete='off'
           placeholder='Chat'
           name='chatText'
+          required
         )
 
         //- Button for sending message
@@ -37,3 +38,6 @@ block append footer
 
   script#location-template(type="text/html")
     include ../partials/locationMsg.pug
+
+  script#sidebar-template(type="text/html")
+    include ../partials/sidebarTemplate.pug

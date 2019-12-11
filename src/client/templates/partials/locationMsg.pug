@@ -1,6 +1,6 @@
 .chat
   p.chat__meta
-    span.chat__meta__user Some user
+    span.chat__meta__user {{ username }}
     span.chat__meta__time {{ createdAt }}
   p.chat__url
-    a(href="{{url}}" target="_blank") My Location
+    a(href="{{ url }}" target="_blank") My Location

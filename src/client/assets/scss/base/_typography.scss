@@ -51,6 +51,7 @@ body {
     font-weight: $font-weight-large;
 
     &__user {
+      text-transform: capitalize;
       padding-right: 1rem;
     }
 
@@ -65,4 +66,19 @@ body {
 /* Set font size for labels */
 label {
   font-size: 1.6rem;
+}
+
+/* Set font sizes for sidebar */
+.sidebar {
+  &__heading {
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  &__content {
+    &__listitem {
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      ;
+    }
+  }
 }
